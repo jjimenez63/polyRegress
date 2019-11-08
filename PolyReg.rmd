@@ -29,3 +29,14 @@ fit3 <- lm(myy~myx + I(myx^2),data=mydf)
 summary.lm(fit3)
 ```
 
+## Test nested models
+
+```{r}
+anova(fit1,fit3)
+anova(fit2,fit3)
+```
+
+
+
+
+
