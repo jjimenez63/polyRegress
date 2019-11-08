@@ -1,0 +1,31 @@
+---
+title: "Polynomial Regression"
+author: "Dr K"
+date: "November 7, 2019"
+output: html_document
+---
+
+```{r include=FALSE}
+require(tidyverse)
+require(tigerstats)
+# make data
+x <- seq(from = -25, to= 25, by = .1)
+noise <- rnorm(n=501,mean=0,sd=85)
+y <- 2*(x-20)*(x+15) + noise
+
+```
+```{r}
+newdat <- data.frame(myx = x, myy= y)
+mydf <- newdat %>% sample_frac(.2)
+plot(myy~myx,data=mydf)
+```
+
+```{r}
+fit1 <- lm(myy~myx,data=mydf)
+summary.lm(fit1)
+fit2 <- lm(myy~I(myx^2),data=mydf)
+summary.lm(fit2)
+fit3 <- lm(myy~myx + I(myx^2),data=mydf)
+summary.lm(fit3)
+```
+
